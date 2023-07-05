@@ -18,4 +18,48 @@
 [“Russia”, “Denmark”, “Kazan”] → []
 */
 
+Console.Clear();
+Console.WriteLine("Создаем массив из нескольких значений.\nВведите колличество значений массива");
+int countArray = int.Parse(Console.ReadLine()!);
 
+string [] startArray = new string [countArray];
+ 
+ string [] FillArray (string [] array)
+ {
+	for (int i = 0; i < countArray; i++)
+	{
+		Console.WriteLine($"Введите {i} значение:");
+		array[i] = Console.ReadLine()!;
+	}
+	return array;
+}
+
+string [] SortArray (string [] array)
+{
+	int countValue = 0;
+	string arrayValue = string.Empty;
+	for (int i = 0; i < array.Length; i++)
+	{
+		arrayValue = array[i];
+		if (arrayValue.Length <= 3) countValue++;
+	}
+
+	string [] endArray = new string [countValue];
+	int index = 0;
+	for (int i = 0; i < array.Length; i++)
+	{
+		arrayValue = array[i];
+		if (arrayValue.Length <= 3)
+		{
+			endArray[index] = array[i];
+			index++;
+		}
+	}
+	return endArray;
+}
+
+FillArray(startArray);
+string [] endArray = SortArray(startArray);
+
+Console.WriteLine($"Первоначальный массив: [{string.Join(", ", startArray)}]");
+Console.WriteLine($"Конечный массив: [{string.Join(", ", endArray)}]");
